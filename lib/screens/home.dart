@@ -1,3 +1,4 @@
+import 'package:firebase_app/screens/settings/settings.dart';
 import 'package:flutter/material.dart';
 
 class ScreenHome extends StatefulWidget {
@@ -8,12 +9,12 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
-  // final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // key: _scaffoldkey,
+      key: _scaffoldkey,
       appBar: AppBar(
         centerTitle: true ,
         backgroundColor:const Color.fromRGBO(59, 123, 122, 1),
@@ -28,7 +29,9 @@ class _ScreenHomeState extends State<ScreenHome> {
           height: 60,
           width: 60,
           child: IconButton(
-            onPressed: (){}, 
+            onPressed: (){
+              _scaffoldkey.currentState!.openDrawer();
+            }, 
             icon:const Icon(Icons.menu_rounded,
             color: Color.fromRGBO(234, 228, 196, 1),)),
         ),
@@ -37,12 +40,15 @@ class _ScreenHomeState extends State<ScreenHome> {
             onPressed: (){}, 
             icon:const Icon(
               Icons.search_rounded,
-              color:  Color.fromRGBO(234, 228, 196, 1),))
+              color:  Color.fromRGBO(234, 228, 196, 1),
+            )
+          )
         ],
       ),
-      drawer: Drawer(
-        backgroundColor: Color.fromRGBO(66, 71, 67, 1),
-        
+      drawer:const Drawer(
+        elevation: 10,
+        backgroundColor: Color.fromRGBO(59, 123, 122, 1),
+        child: settingsDrawer(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){},
