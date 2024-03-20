@@ -1,3 +1,4 @@
+import 'package:firebase_app/screens/addstudent/add_student.dart';
 import 'package:firebase_app/screens/settings/settings.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +52,9 @@ class _ScreenHomeState extends State<ScreenHome> {
         child: settingsDrawer(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Studentadd(),));
+        },
         backgroundColor:const Color.fromRGBO(59, 123, 122, 1),
         child:const Icon(Icons.add,color: Color.fromRGBO(234, 228, 196, 1),),),
       body: SafeArea(
