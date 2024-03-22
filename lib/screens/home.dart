@@ -1,7 +1,6 @@
 import 'package:firebase_app/screens/addstudent/add_student.dart';
 import 'package:firebase_app/screens/common/functions.dart';
 import 'package:firebase_app/screens/liststudent/list_student.dart';
-import 'package:firebase_app/screens/settings/settings.dart';
 import 'package:flutter/material.dart';
 
 class ScreenHome extends StatefulWidget {
@@ -28,31 +27,35 @@ class _ScreenHomeState extends State<ScreenHome> {
             color: Color.fromRGBO(234, 228, 196, 1)
           ),
         ),
-        leading: SizedBox(
-          height: 60,
-          width: 60,
-          child: IconButton(
-            onPressed: (){
-              _scaffoldkey.currentState!.openDrawer();
-            }, 
-            icon:const Icon(Icons.menu_rounded,
-            color: Color.fromRGBO(234, 228, 196, 1),)),
-        ),
-        actions: [
-          IconButton(
-            onPressed: (){}, 
-            icon:const Icon(
-              Icons.search_rounded,
-              color:  Color.fromRGBO(234, 228, 196, 1),
-            )
-          )
-        ],
+        // leading: SizedBox(
+        //   height: 60,
+        //   width: 60,
+        //   child: IconButton(
+        //     onPressed: (){
+        //       _scaffoldkey.currentState!.openDrawer();
+        //     }, 
+        //     icon:const Icon(Icons.menu_rounded,
+        //     color: Color.fromRGBO(234, 228, 196, 1),)),
+        // ),
+        // actions: [
+        //   IconButton(
+        //     onPressed: (){
+        //       showSearch(
+        //         context: context, 
+        //       delegate: Search());
+        //     }, 
+        //     icon:const Icon(
+        //       Icons.search_rounded,
+        //       color:  Color.fromRGBO(234, 228, 196, 1),
+        //     )
+        //   )
+        // ],
       ),
-      drawer:const Drawer(
-        elevation: 10,
-        backgroundColor: Color.fromRGBO(59, 123, 122, 1),
-        child: settingsDrawer(),
-      ),
+      // drawer:const Drawer(
+      //   elevation: 10,
+      //   backgroundColor: Color.fromRGBO(59, 123, 122, 1),
+      //   child: settingsDrawer(),
+      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           clearcontroller();
