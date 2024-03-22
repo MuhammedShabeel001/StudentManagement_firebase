@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_app/screens/addstudent/add_student.dart';
+import 'package:firebase_app/screens/common/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,7 +17,7 @@ class _AddtileState extends State<Addtile> {
   @override
   void initState() {
     setState(() {
-      image1 = null;
+      // image1 = null;
     });
     super.initState();
   }
@@ -38,33 +39,7 @@ class _AddtileState extends State<Addtile> {
                   padding: const EdgeInsets.all(40),
                   child: Column(
                     children: [
-                      Stack(
-                        children: [
-                          CircleAvatar(
-                            radius: 45,
-                            backgroundImage: image1 != null
-                                ? FileImage(image1!)
-                                : const AssetImage(
-                                        'assets/images/graduated.png')
-                                    as ImageProvider,
-                          ),
-                          Positioned(
-                            bottom: -10,
-                            right: -12,
-                            child: IconButton(
-                                onPressed: () {
-                                  option();
-                                },
-                                icon: const Icon(
-                                  Icons.add_a_photo,
-                                  color: Color.fromRGBO(66, 71, 67, 1),
-                                )),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
+                      
                       SizedBox(
                         height: 80,
                         width: 300,
@@ -181,13 +156,13 @@ class _AddtileState extends State<Addtile> {
                         width: 300,
                         child: ElevatedButton(
                             onPressed: () {
-                              // addstudent(context);
+                              addstudent(context);
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
                                     const Color.fromRGBO(59, 123, 122, 1)),
                             child: const Text(
-                              'Add studdent',
+                              'Add student',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400),
@@ -204,64 +179,39 @@ class _AddtileState extends State<Addtile> {
     );
   }
 
-  option() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          backgroundColor: Color.fromRGBO(59, 123, 122, 1),
-          content: const Text(
-            'Photo options',
-            style: TextStyle(color: Colors.white),
-          ),
-          actions: [
-            TextButton(
-                onPressed: () {
-                  fromcamera();
-                },
-                child: const Text(
-                  'Camera',
-                  style: TextStyle(color: Colors.white),
-                )),
-            TextButton(
-              onPressed: () {
-                fromgallery();
-              },
-              child: const Text(
-                'Gallery',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
-        );
-      },
-    );
+  // option() {
+  //   showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return AlertDialog(
+  //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+  //         backgroundColor: Color.fromRGBO(59, 123, 122, 1),
+  //         content: const Text(
+  //           'Photo options',
+  //           style: TextStyle(color: Colors.white),
+  //         ),
+  //         actions: [
+  //           TextButton(
+  //               onPressed: () {
+  //                 fromcamera();
+  //               },
+  //               child: const Text(
+  //                 'Camera',
+  //                 style: TextStyle(color: Colors.white),
+  //               )),
+  //           TextButton(
+  //             onPressed: () {
+  //               fromgallery();
+  //             },
+  //             child: const Text(
+  //               'Gallery',
+  //               style: TextStyle(color: Colors.white),
+  //             ),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
+
   }
-
-  Future<void> fromgallery() async {
-    final img1 = await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    if (img1 != null) {
-      setState(() {
-        image1 = File(img1.path);
-        image = image1!.path;
-      });
-    }
-    // ignore: use_build_context_synchronously
-    Navigator.of(context).pop();
-  }
-
-  Future<void> fromcamera() async {
-    final img1 = await ImagePicker().pickImage(source: ImageSource.camera);
-
-    if (img1 != null) {
-      setState(() {
-        image1 = File(img1.path);
-        image = image1!.path;
-      });
-    }
-    // ignore: use_build_context_synchronously
-    Navigator.of(context).pop();
-  }
-}

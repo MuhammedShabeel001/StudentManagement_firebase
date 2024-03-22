@@ -12,7 +12,7 @@ Future<void> initializingDatabase() async{
     version: 1,
     onCreate: (Database db,int version) {
       db.execute(
-        'CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT, age TEXT, phone TEXT, place TEXT ,image TEXT)'
+        'CREATE TABLE students(id INTEGER PRIMARY KEY, name TEXT, age TEXT, phone TEXT, place TEXT )'
       );
     } ,
   );
@@ -20,8 +20,8 @@ Future<void> initializingDatabase() async{
 
 Future<void> addStudents(StudentModel value)async{
   await _db.execute(
-    'INSERT INTO student(name, age, phone, place, image)VALUES(?,?,?,?,?)',
-    [value.name, value.age, value.phone, value.place, value.image]
+    'INSERT INTO student(name, age, phone, place, )VALUES(?,?,?,?,)',
+    [value.name, value.age, value.phone, value.place]
   );
   getAllStudent();
 } 
@@ -38,13 +38,13 @@ Future<void> getAllStudent() async{
   studentListNotifier.notifyListeners();
 }
 
-Future<void> updateStudent(int id, String name, String age, String phone, String place, String image) async{
+Future<void> updateStudent(int id, String name, String age, String phone, String place) async{
   final data = {
     'name': name,
     'age': age,
     'phone': phone,
     'place': place,
-    'image': image,
+    // 'image': image,
   };
 
   await _db.update('student', data, where: 'id=?', whereArgs: [id]);

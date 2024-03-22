@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 
-File? image1;
-String? image;
+// File? image1;
+// String? image;
 final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
 final namecontroller = TextEditingController();

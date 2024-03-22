@@ -4,7 +4,7 @@ class StudentModel{
   final String age;
   final String phone;
   final String place;
-  final String image;
+  // final String image;
 
   StudentModel(
     {
@@ -12,7 +12,7 @@ class StudentModel{
       required this.age,
       required this.phone,
       required this.place,
-      required this.image,
+      // required this.image,
       this.id
     }
   );
@@ -23,7 +23,7 @@ class StudentModel{
     final age = map['age'] as String;
     final phone = map['phone'] as String;
     final place = map['place'] as String;
-    final image = map['image'] as String;
+    // final image = map['image'] as String;
 
     return StudentModel(
       id: id,
@@ -31,7 +31,7 @@ class StudentModel{
       age: age, 
       phone: phone, 
       place: place, 
-      image: image
+      // image: image
     );
   }
 }
