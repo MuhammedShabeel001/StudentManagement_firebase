@@ -2,12 +2,9 @@ import 'dart:io';
 
 import 'package:firebase_app/screens/addstudent/addtile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
-
-// File? image1;
-// String? image;
+File? image1;
+String? image;
 final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
 final namecontroller = TextEditingController();
@@ -30,18 +27,19 @@ class _StudentaddState extends State<Studentadd> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          iconTheme:IconThemeData(color: Color.fromRGBO(234, 228, 196, 1)),
+          backgroundColor: const Color.fromRGBO(59, 123, 122, 1),
+          iconTheme: const IconThemeData(color: Colors.white),
           centerTitle: true,
           title: const Padding(
             padding: EdgeInsets.all(21),
             child: Text(
               'Please enter details',
               style: TextStyle(
-                  color: Color.fromRGBO(234, 228, 196, 1),
+                  color: Color.fromARGB(255, 254, 254, 254),
                   fontWeight: FontWeight.w300),
             ),
           ),
-          backgroundColor: const Color.fromRGBO(59, 123, 122, 1)),
+          ),
       body: const Addtile(),
     );
   }

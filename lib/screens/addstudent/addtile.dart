@@ -1,11 +1,7 @@
-import 'dart:io';
-
 import 'package:firebase_app/screens/addstudent/add_student.dart';
-import 'package:firebase_app/screens/common/functions.dart';
+import 'package:firebase_app/screens/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
-
 class Addtile extends StatefulWidget {
   const Addtile({super.key});
 
@@ -15,19 +11,12 @@ class Addtile extends StatefulWidget {
 
 class _AddtileState extends State<Addtile> {
   @override
-  void initState() {
-    setState(() {
-      // image1 = null;
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: double.infinity,
-      color: const Color.fromRGBO(155, 181, 161, 1),
       child: SingleChildScrollView(
         child: SizedBox(
           width: double.infinity,
@@ -39,7 +28,6 @@ class _AddtileState extends State<Addtile> {
                   padding: const EdgeInsets.all(40),
                   child: Column(
                     children: [
-                      
                       SizedBox(
                         height: 80,
                         width: 300,
@@ -56,13 +44,13 @@ class _AddtileState extends State<Addtile> {
                           ],
                           decoration: const InputDecoration(
                               labelStyle: TextStyle(
-                                  color: Color.fromRGBO(66, 71, 67, 1)),
+                                  color: Color.fromARGB(255, 0, 0, 0)),
                               suffixIconColor:
-                                  Color.fromRGBO(66, 71, 67, 1),
+                                  Color.fromRGBO(59, 123, 122, 1),
                               suffixIcon: Icon(Icons.person),
                               border: OutlineInputBorder(),
                               labelText: ' Name'),
-                          style: const TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                         ),
                       ),
                       const SizedBox(
@@ -72,7 +60,7 @@ class _AddtileState extends State<Addtile> {
                         height: 80,
                         width: 300,
                         child: TextFormField(
-                          style: const TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter age';
@@ -86,9 +74,9 @@ class _AddtileState extends State<Addtile> {
                           ],
                           decoration: const InputDecoration(
                               suffixIconColor:
-                                  Color.fromRGBO(66, 71, 67, 1),
+                                   Color.fromRGBO(59, 123, 122, 1),
                               labelStyle: TextStyle(
-                                  color: Color.fromRGBO(66, 71, 67, 1)),
+                                  color: Color.fromARGB(255, 0, 0, 0)),
                               suffixIcon: Icon(Icons.date_range),
                               border: OutlineInputBorder(),
                               labelText: ' Age'),
@@ -101,7 +89,7 @@ class _AddtileState extends State<Addtile> {
                         height: 80,
                         width: 300,
                         child: TextFormField(
-                          style: const TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter phone number';
@@ -114,9 +102,9 @@ class _AddtileState extends State<Addtile> {
                             LengthLimitingTextInputFormatter(10)
                           ],
                           decoration: const InputDecoration(
-                            suffixIconColor: Color.fromRGBO(66, 71, 67, 1),
+                            suffixIconColor: Color.fromRGBO(59, 123, 122, 1),
                             labelStyle: TextStyle(
-                                color: Color.fromRGBO(66, 71, 67, 1)),
+                                color: Color.fromARGB(255, 0, 0, 0)),
                             suffixIcon: Icon(Icons.phone),
                             border: OutlineInputBorder(),
                             labelText: ' Phone Number',
@@ -130,7 +118,7 @@ class _AddtileState extends State<Addtile> {
                         height: 80,
                         width: 300,
                         child: TextFormField(
-                          style: const TextStyle(color: Colors.black),
+                          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter place';
@@ -140,9 +128,9 @@ class _AddtileState extends State<Addtile> {
                           controller: placecontroller,
                           decoration: const InputDecoration(
                               suffixIconColor:
-                                  Color.fromRGBO(66, 71, 67, 1),
+                                  Color.fromRGBO(59, 123, 122, 1),
                               labelStyle: TextStyle(
-                                  color: Color.fromRGBO(66, 71, 67, 1)),
+                                  color: Color.fromARGB(255, 0, 0, 0)),
                               suffixIcon: Icon(Icons.place),
                               border: OutlineInputBorder(),
                               labelText: ' Place'),
@@ -156,15 +144,17 @@ class _AddtileState extends State<Addtile> {
                         width: 300,
                         child: ElevatedButton(
                             onPressed: () {
-                              addstudent(context);
+                              // clearcontroller();
+                             addstudent(context);
+                              
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
                                     const Color.fromRGBO(59, 123, 122, 1)),
                             child: const Text(
-                              'Add student',
+                              'Add studdent',
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Color.fromARGB(255, 255, 255, 255),
                                   fontWeight: FontWeight.w400),
                             )),
                       ),
@@ -179,39 +169,4 @@ class _AddtileState extends State<Addtile> {
     );
   }
 
-  // option() {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return AlertDialog(
-  //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-  //         backgroundColor: Color.fromRGBO(59, 123, 122, 1),
-  //         content: const Text(
-  //           'Photo options',
-  //           style: TextStyle(color: Colors.white),
-  //         ),
-  //         actions: [
-  //           TextButton(
-  //               onPressed: () {
-  //                 fromcamera();
-  //               },
-  //               child: const Text(
-  //                 'Camera',
-  //                 style: TextStyle(color: Colors.white),
-  //               )),
-  //           TextButton(
-  //             onPressed: () {
-  //               fromgallery();
-  //             },
-  //             child: const Text(
-  //               'Gallery',
-  //               style: TextStyle(color: Colors.white),
-  //             ),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
-
-  }
+}

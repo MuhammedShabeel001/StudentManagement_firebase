@@ -1,8 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_app/db/db_model.dart';
-import 'package:firebase_app/screens/liststudent/listTile.dart';
+import 'package:firebase_app/db/model/db_model.dart';
+import 'package:firebase_app/screens/functions.dart';
+import 'package:firebase_app/screens/liststudent/list_tile.dart';
 import 'package:flutter/material.dart';
-
 
 class Liststudent extends StatefulWidget {
   const Liststudent({super.key});
@@ -11,41 +10,37 @@ class Liststudent extends StatefulWidget {
   State<Liststudent> createState() => _ListstudentState();
 }
 
-final CollectionReference firedata = FirebaseFirestore.instance.collection('StudentModel');
-
 class _ListstudentState extends State<Liststudent> {
-  late StudentModel student;
+  late Stream<List<Studentmodel>> _studentsStream;
+
+  @override
+  void initState() {
+    super.initState();
+    _studentsStream = getStudentsStream();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: firedata.snapshots(),
-        builder: (ctx, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return SafeArea(
-              child: ListView.separated(
-                  itemBuilder: (ctx, index) {
-                    final DocumentSnapshot data = snapshot.data.docs[index];
-
-                    return Listtile(
-                      data: data,
-                    );
-                  },
-                  separatorBuilder: (ctx, index) {
-                    return const SizedBox(
-                      height: 1,
-                    );
-                  },
-                  itemCount: snapshot.data!.docs.length),
-            );
-          } else {
-            return const Center(
-              child: Text(
-                'No data',
-                style: TextStyle(color: Colors.white),
-              ),
-            );
-          }
+      stream: _studentsStream, 
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }else if(snapshot.hasError){
+          return Center(
+            child: Text('Error: ${snapshot.error}'),
+          );
+        }else{
+          List<Studentmodel>students = snapshot.data ?? [];
+          return ListView.builder(
+            itemCount: students.length,
+            itemBuilder: (context, index) {
+              final student = students[index];
+              return Listtile(data: student);
+            },);
         }
-      );
+      },);
   }
 }
